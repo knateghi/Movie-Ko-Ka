@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,8 @@
 		1988A4A224A2DFC500D05111 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1988A4A024A2DFC500D05111 /* LaunchScreen.storyboard */; };
 		1988A4AD24A2DFC500D05111 /* Movie_Ko_KaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A4AC24A2DFC500D05111 /* Movie_Ko_KaTests.swift */; };
 		1988A4B824A2DFC500D05111 /* Movie_Ko_KaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A4B724A2DFC500D05111 /* Movie_Ko_KaUITests.swift */; };
+		1988A59F24B2B3FA00D05111 /* MovieApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1988A59E24B2B3FA00D05111 /* MovieApiService.swift */; };
+		1988A5A224B2BDAA00D05111 /* URLImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1988A5A124B2BDAA00D05111 /* URLImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,7 @@
 		1988A4B324A2DFC500D05111 /* Movie Ko KaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Movie Ko KaUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1988A4B724A2DFC500D05111 /* Movie_Ko_KaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie_Ko_KaUITests.swift; sourceTree = "<group>"; };
 		1988A4B924A2DFC500D05111 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1988A59E24B2B3FA00D05111 /* MovieApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieApiService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1988A5A224B2BDAA00D05111 /* URLImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +110,7 @@
 				1988A4A024A2DFC500D05111 /* LaunchScreen.storyboard */,
 				1988A4A324A2DFC500D05111 /* Info.plist */,
 				1988A49D24A2DFC500D05111 /* Preview Content */,
+				1988A59E24B2B3FA00D05111 /* MovieApiService.swift */,
 			);
 			path = "Movie Ko Ka";
 			sourceTree = "<group>";
@@ -152,6 +157,9 @@
 			dependencies = (
 			);
 			name = "Movie Ko Ka";
+			packageProductDependencies = (
+				1988A5A124B2BDAA00D05111 /* URLImage */,
+			);
 			productName = "Movie Ko Ka";
 			productReference = 1988A49224A2DFC300D05111 /* Movie Ko Ka.app */;
 			productType = "com.apple.product-type.application";
@@ -224,6 +232,9 @@
 				Base,
 			);
 			mainGroup = 1988A48924A2DFC300D05111;
+			packageReferences = (
+				1988A5A024B2BDAA00D05111 /* XCRemoteSwiftPackageReference "url-image" */,
+			);
 			productRefGroup = 1988A49324A2DFC300D05111 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -270,6 +281,7 @@
 				1988A49624A2DFC300D05111 /* AppDelegate.swift in Sources */,
 				1988A49824A2DFC300D05111 /* SceneDelegate.swift in Sources */,
 				1988A49A24A2DFC300D05111 /* ContentView.swift in Sources */,
+				1988A59F24B2B3FA00D05111 /* MovieApiService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,6 +600,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1988A5A024B2BDAA00D05111 /* XCRemoteSwiftPackageReference "url-image" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dmytro-anokhin/url-image.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.18;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1988A5A124B2BDAA00D05111 /* URLImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1988A5A024B2BDAA00D05111 /* XCRemoteSwiftPackageReference "url-image" */;
+			productName = URLImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1988A48A24A2DFC300D05111 /* Project object */;
 }
