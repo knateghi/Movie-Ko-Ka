@@ -17,7 +17,7 @@ class MovieApiService{
     func getNowPlaying(){
         let semaphore = DispatchSemaphore (value: 0);
         
-        var request = URLRequest(url: URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=02308057abae9b91afa1f03630322904&language=en-US&page=1")!,timeoutInterval: Double.infinity);
+        var request = URLRequest(url: URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=[Enter your api key here]=en-US&page=1")!,timeoutInterval: Double.infinity);
         request.httpMethod = "GET";
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
