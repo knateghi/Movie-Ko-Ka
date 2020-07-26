@@ -9,19 +9,33 @@
 import SwiftUI
 import URLImage
 
+let movies:[Dictionary<String, Any>] = getNowPlaying()!["results"] as! [Dictionary<String, Any>]
 struct ContentView: View {
-    let url = URL(string: "https://image.tmdb.org/t/p/original/9zrbgYyFvwH8sy5mv9eT25xsAzL.jpg")!
-       
+    init() {
+        if #available(iOS 14.0, *) {
+            // iOS 14 doesn't have extra separators below the list by default.
+        } else {
+            // To remove only extra separators below the list:
+            UITableView.appearance().tableFooterView = UIView()
+        }
+
+        // To remove all separators including the actual ones:
+        UITableView.appearance().separatorStyle = .none
+    }
         var body: some View {
-            URLImage(url,content: {
-                $0.image
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                    .padding(.all, 40.0)
-                    .shadow(radius: 10.0)
-            })
+           NavigationView {
             
+            List(1..<movies.count){
+                i in MovieOverview(
+                    movie: movies[i]
+//                    image: MovieImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movies[i]["poster_path"]! as! String)")!)
+//                    ,title: movies[i]["title"] as? String  ?? "" , rate:( (movies[i]["vote_average"] as! NSNumber).floatValue
+//)
+                )
+                }
+            
+            .navigationBarTitle(Text("Movies"))
+            }
         }
 }
 
