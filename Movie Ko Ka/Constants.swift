@@ -8,5 +8,5 @@
 
 import Foundation
 
-let movieDBKey = "02308057abae9b91afa1f03630322904"
+let movieDBKey = "put your key"
 let movieDBImageUrl = "https://image.tmdb.org/t/p/original/"
