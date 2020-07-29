@@ -9,7 +9,7 @@
 import SwiftUI
 import URLImage
 
-struct MovieImage: View {
+struct MoviePosterImage: View {
     var url: URL;
     var body: some View {
           URLImage(url,content: {
@@ -26,6 +26,6 @@ struct MovieImage: View {
 
 struct MovieImage_Previews: PreviewProvider {
     static var previews: some View {
-        MovieImage(url: URL(string: "https://image.tmdb.org/t/p/original/9zrbgYyFvwH8sy5mv9eT25xsAzL.jpg")!)
+        MoviePosterImage(url: URL(string: "9zrbgYyFvwH8sy5mv9eT25xsAzL.jpg")!)
     }
 }

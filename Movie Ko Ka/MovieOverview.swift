@@ -31,7 +31,7 @@ struct MovieOverview: View {
     var body: some View {
 
         HStack {
-            MovieImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie["poster_path"]! as! String)")!)
+            MoviePosterImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie["poster_path"]! as! String)")!)
             VStack(alignment: .leading) {
                 HStack {
                     Text(title).font(.headline)

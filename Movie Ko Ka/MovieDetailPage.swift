@@ -7,11 +7,34 @@
 //
 
 import SwiftUI
+import URLImage
 
 struct MovieDetailPage: View {
-    var movie: Dictionary<String, Any>
+    let movieDetail: Dictionary<String, Any>
+    
+   let movieDropbackImage: String
+    var text: String = "Hey"
+    
+    var propertyText: String{
+        text
+    }
+    
+    init(_ movieId: Int) {
+        
+            movieDetail = getMovieDetail(movieId)!
+            movieDropbackImage =  movieDetail["backdrop_path"] as! String
+        
+        text = "Wait"
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        VStack{
+            
+            MovieDropbackImage(url: URL(string: "\(movieDBImageUrl)\(movieDropbackImage)")!)
+            
+            Spacer()
+        }.navigationBarTitle("Movie Detail")
     }
 }
 

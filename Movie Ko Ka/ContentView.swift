@@ -9,7 +9,8 @@
 import SwiftUI
 import URLImage
 
-let movies:[Dictionary<String, Any>] = getNowPlaying()!["results"] as! [Dictionary<String, Any>]
+let movies: [Dictionary<String, Any>] = getNowPlaying()!["results"] as! [Dictionary<String, Any>]
+
 struct ContentView: View {
     init() {
         if #available(iOS 14.0, *) {
@@ -22,21 +23,22 @@ struct ContentView: View {
         // To remove all separators including the actual ones:
         UITableView.appearance().separatorStyle = .none
     }
-        var body: some View {
-           NavigationView {
-            
-            List(1..<movies.count){
-                i in MovieOverview(
-                    movie: movies[i]
-//                    image: MovieImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movies[i]["poster_path"]! as! String)")!)
-//                    ,title: movies[i]["title"] as? String  ?? "" , rate:( (movies[i]["vote_average"] as! NSNumber).floatValue
-//)
+
+    var body: some View {
+        NavigationView {
+
+            List(1..<movies.count) {
+                i in
+                MovieOverview(
+                        movie: movies[i]
                 )
-                }
-            
-            .navigationBarTitle(Text("Movies"))
+                NavigationLink(destination: MovieDetailPage(movies[i]["id"] as! Int)) {
+                    EmptyView()
+                }.hidden().frame(width: 0)
+                        .navigationBarTitle(Text("Movies"))
             }
         }
+    }
 }
 
 
