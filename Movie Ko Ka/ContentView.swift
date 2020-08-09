@@ -8,8 +8,9 @@
 
 import SwiftUI
 import URLImage
-
-let movies: [Dictionary<String, Any>] = getNowPlaying()!["results"] as! [Dictionary<String, Any>]
+//
+//let movies: [Dictionary<String, Any>] = getNowPlaying()!["results"] as! [Dictionary<String, Any>]
+let movies: [Movie] = getNowPlaying()!.results;
 
 struct ContentView: View {
     init() {
@@ -27,12 +28,12 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
 
-            List(1..<movies.count) {
-                i in
+            List(movies) {
+                movie in
                 MovieOverview(
-                        movie: movies[i]
+                        movie: movie
                 )
-                NavigationLink(destination: MovieDetailPage(movies[i]["id"] as! Int)) {
+                NavigationLink(destination: MovieDetailPage(movie.id)) {
                     EmptyView()
                 }.hidden().frame(width: 0)
                         .navigationBarTitle(Text("Movies"))

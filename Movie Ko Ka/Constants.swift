@@ -8,5 +8,103 @@
 
 import Foundation
 
-let movieDBKey = "02308057abae9b91afa1f03630322904"
-let movieDBImageUrl = "https://image.tmdb.org/t/p/original/"
+let movieDBKey: String = "put_your_api_key"
+let movieDBImageUrl: String = "https://image.tmdb.org/t/p/original/"
+
+struct MoviePage: Hashable, Codable {
+    let results: [Movie]
+    let page: Int
+    let totalResults: Int
+    let totalPages: Int
+}
+
+struct Movie: Hashable, Codable, Identifiable  {
+
+    let id: Int
+    let title: String
+    let backdropPath: String?
+    let posterPath: String?
+    let overview: String
+    let releaseDate: Date
+    let voteAverage: Double
+    let voteCount: Int
+    let tagline: String?
+
+    let videos: String?
+    let credits: String?
+    let adult: Bool
+    let runtime: Int?
+    let homepage: String?
+
+
+    static private let yearFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy"
+        return formatter
+    }()
+
+    static private let durationFormatter: DateComponentsFormatter = {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.hour, .minute]
+        return formatter
+    }()
+
+
+    public var yearText: String {
+        return Movie.yearFormatter.string(from: self.releaseDate)
+    }
+    public var posterURL: URL {
+        return URL(string: "https://image.tmdb.org/t/p/original\(posterPath ?? "")")!
+    }
+
+    public var backdropURL: URL {
+        return URL(string: "https://image.tmdb.org/t/p/original\(backdropPath ?? "")")!
+    }
+
+    public var voteAveragePercentText: String {
+        return "\(Int(voteAverage * 10))%"
+    }
+//
+//    public var genreText: String? {
+//        guard let movieGenres = self.genres else {
+//            return nil
+//        }
+//        return movieGenres.map { $0.name }.joined(separator: ", ")
+//
+//    }
+
+    public var ratingText: String {
+        let rating = Int(voteAverage)
+        let ratingText = (0..<rating).reduce("") { (acc, _) -> String in
+            return acc + "⭐️"
+        }
+        return ratingText
+    }
+
+//    public var yearText: String {
+//        return Movie.yearFormatter.string(from: self.releaseDate)
+//    }
+
+    public var durationText: String? {
+        guard let runtime = self.runtime else {
+            return nil
+        }
+
+        return Movie.durationFormatter.string(from: TimeInterval(runtime) * 60)
+    }
+
+    public var homepageURL: URL? {
+        guard let homepage = self.homepage else {
+            return nil
+        }
+        return URL(string: homepage)
+    }
+
+}
+
+
+
+
+
+

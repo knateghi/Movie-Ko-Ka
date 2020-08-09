@@ -10,41 +10,24 @@ import SwiftUI
 import UICircularProgressRing
 
 struct MovieOverview: View {
-    var movie: Dictionary<String, Any>
-//    var image: MovieImage{
-//    }
-    var releaseDate: String {
-        movie["release_date"] as? String ?? ""
-    }
-    var releaseYear: String {
-        String(releaseDate.prefix(upTo: releaseDate.index(releaseDate.startIndex, offsetBy: 4)))
-    }
-    var title: String {
-        movie["title"] as? String ?? ""
-    }
-    var overview: String {
-        movie["overview"] as? String ?? ""
-    }
-    var voteAverage: Double {
-        (movie["vote_average"] as! NSNumber).doubleValue
-    }
+    var movie: Movie
     var body: some View {
 
         HStack {
-            MoviePosterImage(url: URL(string: "https://image.tmdb.org/t/p/original\(movie["poster_path"]! as! String)")!)
+            MoviePosterImage(url: movie.posterURL)
             VStack(alignment: .leading) {
                 HStack {
-                    Text(title).font(.headline)
-                    Text("(\(releaseYear))").font(.headline).foregroundColor(Color.gray)
+                    Text(movie.title).font(.headline)
+                    Text(movie.yearText).font(.headline).foregroundColor(Color.gray)
                 }.padding(.all, 3)
 //                VoteAverageView(progress: RingProgress.percent(voteAverage)) .frame( width: 40, height: 40)
 
-              
-                Text(String(Int(voteAverage)*10)+"%")
+
+                Text(String(Int(movie.voteAverage)*10)+"%")
                         .foregroundColor(Color.orange)
                         .bold()
                         .padding(.all, 8)
-                Text(overview)
+                Text(movie.overview)
                         .padding(.all, 8)
                         .lineLimit(4)
             }
