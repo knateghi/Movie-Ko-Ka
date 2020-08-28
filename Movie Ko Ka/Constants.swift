@@ -8,8 +8,9 @@
 
 import Foundation
 
-let movieDBKey: String = "put_your_api_key"
+let movieDBKey: String = "put you key"
 let movieDBImageUrl: String = "https://image.tmdb.org/t/p/original/"
+
 
 struct MoviePage: Hashable, Codable {
     let results: [Movie]
@@ -104,6 +105,27 @@ struct Movie: Hashable, Codable, Identifiable  {
 }
 
 
+public struct MovieCreditResponse: Codable {
+    public let cast: [MovieCast]
+}
+
+
+public struct MovieCast:  Hashable, Codable, Identifiable  {
+    public let id: Int
+    public let character: String
+    public let name: String
+
+    public let profilePath: String?
+    
+    public var profileURL: URL? {
+        guard let profilePath = profilePath else {
+            return nil
+        }
+        
+        return URL(string: "https://image.tmdb.org/t/p/w500\(profilePath)")!
+    }
+    
+}
 
 
 

@@ -60,6 +60,32 @@ func getMovieDetail(_ movieId: Int) ->Movie?{
     return movie
 }
 
+
+
+func getMovieCast(_ movieId: Int) ->[MovieCast]?{
+
+    let semaphore = DispatchSemaphore (value: 0)
+
+    var request = URLRequest(url: URL(string: "https://api.themoviedb.org/3/movie/\(movieId)/credits?api_key=\(movieDBKey)")!,timeoutInterval: Double.infinity)
+    request.httpMethod = "GET"
+    var cast: [MovieCast]?
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      guard let data = data else {
+        print(String(describing: error))
+        return
+      }
+      print()
+        let movieCreditResponse: MovieCreditResponse = load(data)
+        cast = movieCreditResponse.cast
+      semaphore.signal()
+    }
+
+    task.resume()
+    semaphore.wait()
+    return cast
+}
+
+
 func convertToDictionary(text: String) -> [String: Any]? {
     if let data = text.data(using: .utf8) {
         do {
@@ -72,7 +98,6 @@ func convertToDictionary(text: String) -> [String: Any]? {
 }
 
 func load<T: Decodable>(_ data: Data) -> T {
-
     do {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase

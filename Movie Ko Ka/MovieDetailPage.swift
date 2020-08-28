@@ -15,9 +15,11 @@ import URLImage
 
 struct MovieDetailPage: View {
     let movie: Movie
+    let cast: [MovieCast]
 
     init(_ movieId: Int) {
         movie = getMovieDetail(movieId)!
+        cast = getMovieCast(movieId)!
     }
 
     var body: some View {
@@ -33,6 +35,20 @@ struct MovieDetailPage: View {
                 Text(movie.overview)
                 Spacer()
             }.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            List{
+                URLImage(cast[0].profileURL!,
+                content: {
+                    $0.image
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                        .padding(.all)
+                        .shadow(radius: 10.0)
+                })
+                
+                
+                
+            }
         }.navigationBarTitle("Movie Detail")
     }
 }
